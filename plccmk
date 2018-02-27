@@ -1,0 +1,35 @@
+#!/bin/bash
+
+LIB=${LIBPLCC:-/usr/local/pub/tvf/PLCC}
+PYTHON3=python3
+PLCC=$LIB/plcc.py
+
+if [ "$1" = "-c" ];
+then
+        rm Java/*.java Java/*.class &>/dev/null
+        shift
+fi
+
+if [ $# -gt 0 ];
+then
+	FILES="$@"
+else
+	FILES=${FILE:-grammar}
+fi
+
+[ -d "$LIB" ] || {
+	echo "$LIB: no such directory"
+	exit 1
+}
+
+$PYTHON3 $PLCC $FILES || {
+	echo "cannot compile $FILES"
+	exit 4
+}
+
+cd Java || {
+	echo "cannot cd to the Java directory"
+	exit 5
+}
+
+javac *.java

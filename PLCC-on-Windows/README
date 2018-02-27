@@ -1,0 +1,25 @@
+You should be able to get PLCC working on Windows by setting up the
+attached plccmk.bat script as a batchfile.  (For security purposes
+I changed the file extension to .txt -- you will need to change its
+extension to .bat before you proceed).
+
+Here are the steps to get it working:
+
+ 0. Create a PLCC folder on your Windows system, e.g., C:\Program Files\plcc.
+ 1. Copy the plcc.py file and Std directory from ~tvf/CSCI344/PLCC
+    to the PLCC folder you created in Step 0.
+ 2. Add the plccmk.bat file (attached, see above) to the PLCC folder.
+ 3. Add the path of the PLCC folder to the PATH environment variable.
+ 4. Modify the return value on line 50 in plcc.py to be the absolute path
+    of the PLCC folder.
+ 5. Before running the batch file, set the LIBPLCC environment variable to
+    the PLCC folder name. (Alternatively, modify the plccmk.bat script to
+    set the LIBPLCC variable to the PLCC folder name.)
+
+You should then be able to use the plccmk command in a command prompt
+session the same as on linux. You will also need javac and python to
+be in your PATH environment variable, should it not have been set by
+their installers.
+
+Note that the attached batchfile was not completely tested. I do know that
+"plccmk -c" and "plccmk" work. Hope this helps.

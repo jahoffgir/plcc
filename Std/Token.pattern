@@ -1,0 +1,64 @@
+import java.util.*;
+import java.util.regex.*;
+
+// Token class with match patterns (used with the built-in Scan class)
+public class Token {
+       
+    public enum Skip {
+%%Skips%%
+
+	public String pattern;
+	public Pattern cPattern; // compiled pattern
+
+	Skip(String pattern) {
+	    this.pattern = pattern;
+	    this.cPattern = Pattern.compile(pattern, Pattern.DOTALL);
+	}
+    }
+
+    public enum Val {
+%%Vals%%
+
+	public String pattern;
+	public Pattern cPattern; // compiled pattern
+
+        Val(String pattern) {
+	    this.pattern = pattern;
+	    this.cPattern = Pattern.compile(pattern, Pattern.DOTALL);
+	}
+    }
+
+    public Val val;          // token
+    public String str;       // the token string matched
+    public int lno;          // the line number where this token was found
+
+    public Token() {
+	val = null;
+        str = null;
+        lno = 0;
+    }
+    
+    public Token(Val val, String str, int lno) {
+        this.val = val;
+        this.str = str;
+	this.lno = lno;
+    }
+
+    public Token(Val val, String str) {
+	this(val, str, 0);
+    }
+
+    public String toString() {
+        return str;
+    }
+
+    public static void main(String [] args) {
+	for (Skip s : Skip.values())
+	    System.out.println("skip " + s + " '" + s.pattern + "'");
+	for (Val v : Val.values())
+	    System.out.println(v + " '" + v.pattern + "'");
+    }
+
+//Token//
+
+}

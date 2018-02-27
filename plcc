@@ -1,0 +1,12 @@
+#!/bin/bash
+
+LIB=${LIBPLCC:-/usr/local/pub/tvf/PLCC}
+PYTHON3=python3
+PLCC=$LIB/plcc.py
+
+[ -d "$LIB" ] || {
+        echo "$LIB: no such directory"
+        exit 1
+}
+
+$PYTHON3 $PLCC "$@"
