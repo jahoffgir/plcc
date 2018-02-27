@@ -1,2 +1,2 @@
 # plcc
-PLC langugage
+PLC language
